@@ -12,7 +12,10 @@ RUN apk add --no-cache \
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
 RUN unzip /tmp/pb.zip -d /pb/ && rm /tmp/pb.zip
 
-COPY ./pb_migrations /pb/pb_migrations
+# UNCOMMENT IF YOU HAVE MIGRATIONS IN POCKETBASE
+# COPY ./pb_migrations /pb/pb_migrations
+
+# UNCOMMENT IF YOU HAVE HOOKS IN POCKETBASE
 # COPY ./pb_hooks /pb/pb_hooks
 
 VOLUME /pb_data

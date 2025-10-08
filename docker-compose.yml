@@ -1,0 +1,27 @@
+services:
+  db:
+    build:
+      context: ./db
+    container_name: renativebase_db
+    volumes:
+      - db_data:/pb_data
+    ports:
+      - "8090:8090"
+    env_file:
+      - .env
+
+  ui:
+    build:
+      context: ./ui
+      args:
+        DB_BASE_URL: ${DB_BASE_URL}
+    container_name: renativebase_ui
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+volumes:
+  db_data:
