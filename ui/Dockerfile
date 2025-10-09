@@ -3,8 +3,8 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-ARG API_BASE_URL
-ENV API_BASE_URL=$API_BASE_URL
+ARG DB_BASE_URL
+ENV DB_BASE_URL=$DB_BASE_URL
 
 RUN npm install -g dotenv-cli
 
