@@ -5,8 +5,8 @@ import { ThemeProvider } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useColorScheme } from 'nativewind';
 import { useUserStore } from '@/stores/userStore';
+import { usePersistedTheme } from '@/utils/usePersistedTheme';
 import { Spinner } from '@/components/Spinner';
 
 export {
@@ -16,15 +16,15 @@ export {
 
 export default function RootLayout() {
   const { isAuthenticated, loading } = useUserStore();
-  const { colorScheme } = useColorScheme();
+  const { theme, loaded: isThemeLoaded } = usePersistedTheme();
 
-  if (loading) {
-		return <Spinner color={colorScheme === 'dark' ? '#FBBF24' : '#3B82F6'} />;
+  if (!isThemeLoaded || loading) {
+		return <Spinner color={theme === 'dark' ? '#FBBF24' : '#3B82F6'} />;
 	}
 
   return (
-    <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>
-      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+    <ThemeProvider value={NAV_THEME[theme ?? 'light']}>
+      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
       <Stack>
         <Stack.Protected guard={!isAuthenticated}>
           <Stack.Screen name="(unauthenticated)" options={{ headerShown: false }} />

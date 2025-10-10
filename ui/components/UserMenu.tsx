@@ -10,6 +10,7 @@ import { LogOutIcon } from 'lucide-react-native';
 import * as React from 'react';
 import { View } from 'react-native';
 import pb from '@/services/pb';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function UserMenu() {
 	const popoverTriggerRef = React.useRef<TriggerRef>(null);
@@ -33,6 +34,7 @@ export default function UserMenu() {
 						<View className="flex-1">
 							<Text className="font-medium leading-5">{pb.authStore?.record?.name}</Text>
 						</View>
+						<ThemeToggle />
 					</View>
 					<View className="flex-row flex-wrap gap-3 py-0.5">
 						<Button variant="outline" size="sm" className="flex-1" onPress={onSignOut}>
