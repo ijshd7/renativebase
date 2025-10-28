@@ -6,8 +6,8 @@ export default function AuthenticatedIndex() {
 	const name = pb.authStore?.record?.name || '';
 
 	return (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Welcome back, {name}!</Text>
+		<View className="flex flex-1 justify-center items-center">
+			<Text className="text-primary">Welcome back, {name}!</Text>
 		</View>
 	);
 }
