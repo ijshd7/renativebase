@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default PocketBase version
-PB_VERSION=${1:-0.34.1}
+PB_VERSION=${1:-0.34.2}
 
 # Load env vars
 if [ -f .env ]; then
