@@ -3,7 +3,6 @@ import RNEventSource from 'react-native-sse';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PocketBase, { AsyncAuthStore } from 'pocketbase';
 import { env } from '../config/env';
-import { useUserStore } from '@/stores/userStore';
 
 // load the polyfill
 const PatchedEventSource = RNEventSource as any;
@@ -21,11 +20,5 @@ const store = new AsyncAuthStore({
 });
 
 const pb = new PocketBase(env.DB_BASE_URL, store);
-
-pb.authStore.onChange(() => {
-	useUserStore.setState({
-		isAuthenticated: pb.authStore.isValid,
-	});
-});
 
 export default pb;
